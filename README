@@ -1,5 +1,3 @@
 Here the short sample how-to use Google C++ Test Framework in cmake project
 
-1. install gtest whatewer you like
-2. run GTEST_ROOT=<path to gtest installation> cmake .
-3. make test
+1. Google test will be downloaded from svn and build with you project

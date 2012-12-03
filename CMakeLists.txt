@@ -1,13 +1,16 @@
-cmake_minimum_required(VERSION 2.6)
+cmake_minimum_required(VERSION 2.8.8)
 set(PROJECT_NAME_STR cpp_int_snippets)
-project(${PROJECT_NAME_STR})
+project(${PROJECT_NAME_STR} C CXX)
 
-add_definitions(-Wall -ansi -Wno-deprecated -pthread)
+if(CMAKE_COMPILER_IS_GNUCXX)
+	add_definitions(-Wall -ansi -Wno-deprecated -pthread)
+endif()
 
 #-------------------
 # set common include folder for module
 #-------------------
 set(COMMON_INCLUDES ${PROJECT_SOURCE_DIR}/include)
+set(EXT_PROJECTS_DIR ${PROJECT_SOURCE_DIR}/ext)
 
 #-------------------
 # Module source
@@ -18,17 +21,31 @@ set(COMMON_INCLUDES ${PROJECT_SOURCE_DIR}/include)
 #file(GLOB SRC_FILES ${PROJECT_SOURCE_DIR}/src/*.cpp)
 #add_library(${PROJECT_LIB_NAME} ${SRC_FILES})
 
+SET_DIRECTORY_PROPERTIES(PROPERTIES EP_PREFIX ${CMAKE_BINARY_DIR}/ext)
+add_subdirectory(${EXT_PROJECTS_DIR}/gtest)
+
 #-------------------
 # Test
 #-------------------
 enable_testing()
-find_package(GTest REQUIRED)
-
 set(PROJECT_TEST_NAME ${PROJECT_NAME_STR}_test)
 include_directories(${GTEST_INCLUDE_DIRS} ${COMMON_INCLUDES})
 
 file(GLOB TEST_SRC_FILES ${PROJECT_SOURCE_DIR}/test/*.cpp)
 add_executable(${PROJECT_TEST_NAME} ${TEST_SRC_FILES})
-target_link_libraries(${PROJECT_TEST_NAME} ${GTEST_BOTH_LIBRARIES} pthread)
+add_dependencies(${PROJECT_TEST_NAME} googletest)
+
+target_link_libraries(${PROJECT_TEST_NAME}
+	debug ${GTEST_LIBS_DIR}/DebugLibs/${CMAKE_FIND_LIBRARY_PREFIXES}gtest${CMAKE_FIND_LIBRARY_SUFFIXES}
+        optimized ${GTEST_LIBS_DIR}/ReleaseLibs/${CMAKE_FIND_LIBRARY_PREFIXES}gtest${CMAKE_FIND_LIBRARY_SUFFIXES}
+)
+target_link_libraries(${PROJECT_TEST_NAME}
+	debug ${GTEST_LIBS_DIR}/DebugLibs/${CMAKE_FIND_LIBRARY_PREFIXES}gtest_main${CMAKE_FIND_LIBRARY_SUFFIXES}
+        optimized ${GTEST_LIBS_DIR}/ReleaseLibs/${CMAKE_FIND_LIBRARY_PREFIXES}gtest_main${CMAKE_FIND_LIBRARY_SUFFIXES}
+)
+
+if(CMAKE_COMPILER_IS_GNUCXX)
+	target_link_libraries(${PROJECT_TEST_NAME} pthread)
+endif()
 
 add_test(test1 ${PROJECT_TEST_NAME})
