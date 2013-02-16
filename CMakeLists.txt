@@ -21,7 +21,6 @@ set(EXT_PROJECTS_DIR ${PROJECT_SOURCE_DIR}/ext)
 #file(GLOB SRC_FILES ${PROJECT_SOURCE_DIR}/src/*.cpp)
 #add_library(${PROJECT_LIB_NAME} ${SRC_FILES})
 
-SET_DIRECTORY_PROPERTIES(PROPERTIES EP_PREFIX ${CMAKE_BINARY_DIR}/ext)
 add_subdirectory(${EXT_PROJECTS_DIR}/gtest)
 
 #-------------------
@@ -38,7 +37,7 @@ add_dependencies(${PROJECT_TEST_NAME} googletest)
 
 if(CMAKE_COMPILER_IS_GNUCXX)
 	target_link_libraries(${PROJECT_TEST_NAME} pthread)
-	target_link_libraries(${PROJECT_TEST_NAME} 
+	target_link_libraries(${PROJECT_TEST_NAME}
 		${GTEST_LIBS_DIR}/libgtest.a
 		${GTEST_LIBS_DIR}/libgtest_main.a
 	)
@@ -53,9 +52,5 @@ else()
 	       optimized ${GTEST_LIBS_DIR}/ReleaseLibs/${CMAKE_FIND_LIBRARY_PREFIXES}gtest_main${CMAKE_FIND_LIBRARY_SUFFIXES}
 	)
 endif()
- 
+
 add_test(test1 ${PROJECT_TEST_NAME})
-
- 
- 
-
