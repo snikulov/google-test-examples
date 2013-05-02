@@ -6,6 +6,10 @@ if(CMAKE_COMPILER_IS_GNUCXX)
 	add_definitions(-Wall -ansi -Wno-deprecated -pthread)
 endif()
 
+if(MSVC)
+#vc 2012 fix for vararg templates
+    set(MSVC_COMPILER_DEFS "-D_VARIADIC_MAX=10")
+endif() 
 #-------------------
 # set common include folder for module
 #-------------------
@@ -26,6 +30,7 @@ add_subdirectory(${EXT_PROJECTS_DIR}/gtest)
 #-------------------
 # Test
 #-------------------
+add_definitions(${MSVC_COMPILER_DEFS})
 enable_testing()
 set(PROJECT_TEST_NAME ${PROJECT_NAME_STR}_test)
 include_directories(${GTEST_INCLUDE_DIRS} ${COMMON_INCLUDES})
