@@ -40,7 +40,7 @@ add_executable(${PROJECT_TEST_NAME} ${TEST_SRC_FILES})
 add_dependencies(${PROJECT_TEST_NAME} googletest)
 
 
-if(CMAKE_COMPILER_IS_GNUCXX)
+if(NOT WIN32)
 	target_link_libraries(${PROJECT_TEST_NAME} pthread)
 	target_link_libraries(${PROJECT_TEST_NAME}
 		${GTEST_LIBS_DIR}/libgtest.a
