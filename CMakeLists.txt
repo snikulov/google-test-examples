@@ -41,10 +41,10 @@ add_dependencies(${PROJECT_TEST_NAME} googletest)
 
 
 if(NOT WIN32)
-	target_link_libraries(${PROJECT_TEST_NAME} pthread)
 	target_link_libraries(${PROJECT_TEST_NAME}
 		${GTEST_LIBS_DIR}/libgtest.a
 		${GTEST_LIBS_DIR}/libgtest_main.a
+		pthread
 	)
 else()
 
