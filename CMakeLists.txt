@@ -3,7 +3,8 @@ set(PROJECT_NAME_STR google-test-examples)
 project(${PROJECT_NAME_STR} C CXX)
 
 if(CMAKE_COMPILER_IS_GNUCXX)
-	add_definitions(-Wall -ansi -Wno-deprecated -pthread)
+	find_package(Threads REQUIRED)
+	add_definitions(-Wall -ansi -Wno-deprecated)
 endif()
 
 if(MSVC)
@@ -44,7 +45,7 @@ if(NOT WIN32)
 	target_link_libraries(${PROJECT_TEST_NAME}
 		${GTEST_LIBS_DIR}/libgtest.a
 		${GTEST_LIBS_DIR}/libgtest_main.a
-		pthread
+		${CMAKE_THREAD_LIBS_INIT}
 	)
 else()
 
