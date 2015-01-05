@@ -2,12 +2,14 @@ cmake_minimum_required(VERSION 2.8.8)
 set(PROJECT_NAME_STR google-test-examples)
 project(${PROJECT_NAME_STR} C CXX)
 
+find_package(Threads REQUIRED)
+
 if(CMAKE_COMPILER_IS_GNUCXX)
-	add_definitions(-Wall -ansi -Wno-deprecated -pthread)
+    add_definitions(-Wall -ansi -Wno-deprecated -pthread)
 endif()
 
 if(MSVC)
-#vc 2012 fix for vararg templates
+    #vc 2012 fix for vararg templates
     set(MSVC_COMPILER_DEFS "-D_VARIADIC_MAX=10")
 endif() 
 #-------------------
@@ -41,21 +43,21 @@ add_dependencies(${PROJECT_TEST_NAME} googletest)
 
 
 if(NOT WIN32)
-	target_link_libraries(${PROJECT_TEST_NAME}
-		${GTEST_LIBS_DIR}/libgtest.a
-		${GTEST_LIBS_DIR}/libgtest_main.a
-		pthread
-	)
+    target_link_libraries(${PROJECT_TEST_NAME}
+        ${GTEST_LIBS_DIR}/libgtest.a
+        ${GTEST_LIBS_DIR}/libgtest_main.a
+        )
 else()
-
-	target_link_libraries(${PROJECT_TEST_NAME}
-	       debug ${GTEST_LIBS_DIR}/DebugLibs/${CMAKE_FIND_LIBRARY_PREFIXES}gtest${CMAKE_FIND_LIBRARY_SUFFIXES}
-	       optimized ${GTEST_LIBS_DIR}/ReleaseLibs/${CMAKE_FIND_LIBRARY_PREFIXES}gtest${CMAKE_FIND_LIBRARY_SUFFIXES}
-	)
-	target_link_libraries(${PROJECT_TEST_NAME}
-	       debug ${GTEST_LIBS_DIR}/DebugLibs/${CMAKE_FIND_LIBRARY_PREFIXES}gtest_main${CMAKE_FIND_LIBRARY_SUFFIXES}
-	       optimized ${GTEST_LIBS_DIR}/ReleaseLibs/${CMAKE_FIND_LIBRARY_PREFIXES}gtest_main${CMAKE_FIND_LIBRARY_SUFFIXES}
-	)
+    target_link_libraries(${PROJECT_TEST_NAME}
+        debug ${GTEST_LIBS_DIR}/DebugLibs/${CMAKE_FIND_LIBRARY_PREFIXES}gtest${CMAKE_FIND_LIBRARY_SUFFIXES}
+        optimized ${GTEST_LIBS_DIR}/ReleaseLibs/${CMAKE_FIND_LIBRARY_PREFIXES}gtest${CMAKE_FIND_LIBRARY_SUFFIXES}
+        )
+    target_link_libraries(${PROJECT_TEST_NAME}
+        debug ${GTEST_LIBS_DIR}/DebugLibs/${CMAKE_FIND_LIBRARY_PREFIXES}gtest_main${CMAKE_FIND_LIBRARY_SUFFIXES}
+        optimized ${GTEST_LIBS_DIR}/ReleaseLibs/${CMAKE_FIND_LIBRARY_PREFIXES}gtest_main${CMAKE_FIND_LIBRARY_SUFFIXES}
+        )
 endif()
+
+target_link_libraries(${PROJECT_TEST_NAME} ${CMAKE_THREAD_LIBS_INIT})
 
 add_test(test1 ${PROJECT_TEST_NAME})
