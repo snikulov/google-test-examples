@@ -1,6 +1,6 @@
-Here the short sample how-to use Google C++ Test Framework in cmake project
+Here the short sample how-to use Google C++ Test Framework in cmakeable projects
 
-1. Google test will be downloaded from GitHub and build with you project
+1. Google test will be downloaded from GitHub and build with your project
 
 How to use:
 
