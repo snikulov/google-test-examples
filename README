@@ -17,3 +17,8 @@ Known issues:
 
 - Google Test (master branch) was broken for MinGW (see https://github.com/google/googletest/issues/606)
   As workaround we'll use -Dgtest_disable_pthreads=ON as suggested per https://github.com/google/shaderc/pull/174
+
+2. How to integrate with CLion using Cygwin 
+   1. Add "-std=gnu++0x" flag to add_definitions(-Wall -ansi -Wno-deprecated -pthread -std=gnu++0x)
+      in CMakeLists.txt in google-test-examples. 
+   2. Enable INSTALL_COMMAND by deleting the "" in CMakeLists.txt in gtest. CLion requires a downloaded copy of gtest.   
