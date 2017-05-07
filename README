@@ -17,3 +17,54 @@ Known issues:
 
 - Google Test (master branch) was broken for MinGW (see https://github.com/google/googletest/issues/606)
   As workaround we'll use -Dgtest_disable_pthreads=ON as suggested per https://github.com/google/shaderc/pull/174
+
+---
+
+# How to use (alternativ with docker containers)
+
+## Get repo
+```bash
+$ git clone https://github.com/snikulov/google-test-examples.git
+$ cd google-test-examples
+```
+
+## CMake
+We can use CMake to configure/build/running tests:
+
+### Host side
+```bash
+$ cmake -P build.cmake
+```
+
+### Docker Containers side
+```bash
+cmake -P build_with_docker.cmake
+```
+
+## Makefile
+
+### Targets
+```bash
+$ make [tab]
+make all
+all                        build/Makefile             configure                  google-test-examples_test
+build                      clean                      DOCKER_COMMAND             run
+build_directory            clean_docker_image         docker_image
+build_docker_image         CMAKE_COMMAND              DOCKER_IMAGE
+```
+
+### Configure/Build/Running tests (with docker containers)
+```bash
+$ make all
+docker build -t atty/google-test-examples:latest --file docker/Dockerfile .
+Sending build context to Docker daemon  221.2kB
+Step 1/1 : FROM rikorose/gcc-cmake:latest
+...
+1/1 Test #1: test1 ............................   Passed    0.00 sec
+100% tests passed, 0 tests failed out of 1
+
+Total Test time (real) =   0.00 sec
+```
+
+## Screencast recording
+[![asciicast](https://asciinema.org/a/a03v5lmsoph7l0lhish1jkwqo.png)](https://asciinema.org/a/a03v5lmsoph7l0lhish1jkwqo)
