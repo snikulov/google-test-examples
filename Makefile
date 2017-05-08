@@ -11,11 +11,13 @@ DOCKER_IMAGE = $(USER)/google-test-examples:latest
 
 DOCKER_COMMAND = docker run \
 		--rm \
+		--tty \
 		-v /etc/group:/etc/group:ro  \
 		-v /etc/passwd:/etc/passwd:ro  \
 		-u $(shell id -u $$USER):$(shell id -g $$USER)  \
 		-v $(shell pwd):$(shell pwd)  \
 		-w $(shell pwd)/build \
+		-e "TERM=xterm-256color" \
 		$(DOCKER_IMAGE)
 # $(info DOCKER_COMMAND: $(DOCKER_COMMAND))
 
@@ -35,8 +37,10 @@ build: google-test-examples_test
 google-test-examples_test: docker_image
 	$(DOCKER_COMMAND) bash -c "$(CMAKE_COMMAND) --build ."
 
+PRINT = @echo -e "\e[1;34mBuilding $<\e[0m"
+
 run: docker_image google-test-examples_test
-	$(DOCKER_COMMAND) bash -c "ctest -VV"
+	$(PRINT) && $(DOCKER_COMMAND) bash -c "ctest -VV"
 
 
 # urls:
