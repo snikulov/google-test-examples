@@ -18,8 +18,9 @@ ExternalProject_Add(googletest
     -Dgtest_disable_pthreads=${GTEST_DISABLE_PTHREADS}
     -DBUILD_GTEST=ON
     PREFIX "${CMAKE_CURRENT_BINARY_DIR}"
-    # Disable install step
+    # Disable install step. Enable for CLion.
     INSTALL_COMMAND ""
+    
     )
 
 # Specify include dir

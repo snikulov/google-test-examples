@@ -6,6 +6,11 @@ find_package(Threads REQUIRED)
 
 if(CMAKE_COMPILER_IS_GNUCXX)
     add_definitions(-Wall -ansi -Wno-deprecated -pthread)
+#-------------------
+# Cygwin
+#-------------------
+#  add_definitions(-std=gnu++0x)
+
 endif()
 
 if(MSVC)
