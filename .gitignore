@@ -1,1 +1,12 @@
+# IDE created folders
+# -------------------
+.idea
+
+# CMAKE folders
+# -------------
+cmake-build-debug
+*.txt.user
+
+# Temp folders
+# ------------
 build
