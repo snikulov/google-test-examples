@@ -1,12 +1,13 @@
-# IDE created folders
-# -------------------
+# Idea CLion
+# ==========
 .idea
+cmake-build-*
 
-# CMAKE folders
-# -------------
-cmake-build-debug
-*.txt.user
+# Qt cache
+# ========
+CMakeLists.txt.user
+CMakeLists.txt.user.*
 
-# Temp folders
-# ------------
+# Build
+# =====
 build
