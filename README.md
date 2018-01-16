@@ -22,7 +22,7 @@ Known issues:
 
 # How to use (alternativ with docker containers)
 
-## Get repo
+## Get repo
 ```bash
 $ git clone https://github.com/snikulov/google-test-examples.git
 $ cd google-test-examples
@@ -31,19 +31,19 @@ $ cd google-test-examples
 ## CMake
 We can use CMake to configure/build/running tests:
 
-### Host side
+### Host side
 ```bash
 $ cmake -P build.cmake
 ```
 
-### Docker Containers side
+### Docker Containers side
 ```bash
 cmake -P build_with_docker.cmake
 ```
 
 ## Makefile
 
-### Targets
+### Targets
 ```bash
 $ make [tab]
 make all
@@ -53,7 +53,7 @@ build_directory            clean_docker_image         docker_image
 build_docker_image         CMAKE_COMMAND              DOCKER_IMAGE
 ```
 
-### Configure/Build/Running tests (with docker containers)
+### Configure/Build/Running tests (with docker containers)
 ```bash
 $ make all
 docker build -t atty/google-test-examples:latest --file docker/Dockerfile .
