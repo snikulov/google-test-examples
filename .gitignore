@@ -1,1 +1,13 @@
+# Idea CLion
+# ==========
+.idea
+cmake-build-*
+
+# Qt cache
+# ========
+CMakeLists.txt.user
+CMakeLists.txt.user.*
+
+# Build
+# =====
 build
