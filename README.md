@@ -14,7 +14,7 @@ How to use:
 
 CI status:
 
-[![Build Status](https://travis-ci.org/snikulov/google-test-examples.svg?branch=master)](https://travis-ci.org/snikulov/google-test-examples)
+[![Build Status](https://travis-ci.org/snikulov/google-test-examples.svg?branch=master)](https://travis-ci.org/snikulov/google-test-examples) | [![Build status](https://ci.appveyor.com/api/projects/status/t30uakdk0awxy88p/branch/master?svg=true)](https://ci.appveyor.com/project/snikulov/google-test-examples/branch/master)
 
 Known issues:
 
