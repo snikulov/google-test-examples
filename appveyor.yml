@@ -10,6 +10,6 @@ environment:
 build_script:
     - mkdir build.%BDIR%
     - cd build.%BDIR%
-    - cmake .. -G"%PRJ_GEN%"
+    - cmake .. -G"%PRJ_GEN%" -Dgtest_force_shared_crt=ON
     - cmake --build . --config Release --clean-first
     - ctest -VV
