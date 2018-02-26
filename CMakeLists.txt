@@ -37,7 +37,6 @@ set(COMMON_INCLUDES ${PROJECT_SOURCE_DIR}/include)
 # Test
 #-------------------
 enable_testing()
-set(PROJECT_TEST_NAME ${PROJECT_NAME_STR}_test)
 include_directories(${COMMON_INCLUDES})
 
 file(GLOB TEST_SRC_FILES ${PROJECT_SOURCE_DIR}/test/*.cpp)
