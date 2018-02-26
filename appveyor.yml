@@ -1,0 +1,15 @@
+version: 1.0.0.{build}
+
+environment:
+    matrix:
+      - PRJ_GEN: "Visual Studio 12 2013 Win64"
+        BDIR: msvc2013
+      - PRJ_GEN: "Visual Studio 14 2015 Win64"
+        BDIR: msvc2015
+
+build_script:
+    - mkdir build.%BDIR%
+    - cd build.%BDIR%
+    - cmake .. -G"%PRJ_GEN%"
+    - cmake --build . --config Release --clean-first
+    - ctest -VV

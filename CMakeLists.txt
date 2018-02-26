@@ -22,7 +22,7 @@ endif()
 
 # Will download external CMakeable project from git repo, branch "master" and install it in $DEPS_ROOT
 # This also will create "googletest.git" target, which we'll use as dependency for our test project
-ExtProjectGit("https://github.com/google/googletest.git" "master" ${DEPS_ROOT})
+ExtProjectGit("https://github.com/google/googletest.git" "master" ${DEPS_ROOT} CMAKE_ARGS "-Dgtest_force_shared_crt=ON")
 
 include_directories("${DEPS_ROOT}/include")
 link_directories("${DEPS_ROOT}/lib")
