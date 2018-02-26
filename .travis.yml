@@ -1,0 +1,33 @@
+language: cpp
+
+matrix:
+    include:
+        - os: linux
+          compiler: gcc
+        - os: linux
+          compiler: clang
+        - os: osx
+          compiler: gcc
+        - os: osx
+          compiler: clang
+        - os: linux
+          compiler: gcc
+          dist: trusty
+          env: BUILD_TYPE=cmake
+        - os: linux
+          compiler: clang
+          dist: trusty
+          env: BUILD_TYPE=cmake
+        - os: linux
+          compiler: gcc
+          env: BUILD_TYPE=coverage
+        - os: linux
+          compiler: gcc
+          env: BUILD_TYPE=distcheck
+
+script:
+    mkdir build
+    cd build
+    cmake ..
+    cmake --build .
+    ctest -VV
