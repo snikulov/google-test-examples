@@ -2,14 +2,17 @@ version: 1.0.0.{build}
 
 environment:
     matrix:
+      - PRJ_GEN: "MinGW Makefiles"
+        BDIR: mingw
       - PRJ_GEN: "Visual Studio 12 2013 Win64"
         BDIR: msvc2013
       - PRJ_GEN: "Visual Studio 14 2015 Win64"
         BDIR: msvc2015
-
+ 
 build_script:
     - mkdir build.%BDIR%
+    - set PATH=C:\mingw-w64\x86_64-7.2.0-posix-seh-rt_v5-rev1\mingw64\bin;%PATH%
     - cd build.%BDIR%
-    - cmake .. -G"%PRJ_GEN%"
+    - cmake .. -G"%PRJ_GEN%" -DCMAKE_SH="CMAKE_SH-NOTFOUND"
     - cmake --build . --config Release --clean-first
     - ctest -VV
