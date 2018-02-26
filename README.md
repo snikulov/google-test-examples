@@ -12,6 +12,9 @@ How to use:
 6. cmake --build .
 7. ctest -VV
 
+CI status:
+
+[![Build Status](https://travis-ci.org/snikulov/google-test-examples.svg?branch=master)](https://travis-ci.org/snikulov/google-test-examples)
 
 Known issues:
 
