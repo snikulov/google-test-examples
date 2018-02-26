@@ -19,10 +19,15 @@ if(MSVC)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -D_VARIADIC_MAX=10")
 endif() 
 
+if(WIN32)
+    set(_OPT_CMAKE_ARGS "-Dgtest_force_shared_crt=ON;-DCMAKE_SH=CMAKE_SH-NOTFOUND")
+else()
+    set(_OPT_CMAKE_ARGS "")
+endif()
 
 # Will download external CMakeable project from git repo, branch "master" and install it in $DEPS_ROOT
 # This also will create "googletest.git" target, which we'll use as dependency for our test project
-ExtProjectGit("https://github.com/google/googletest.git" "master" ${DEPS_ROOT} CMAKE_ARGS "-Dgtest_force_shared_crt=ON")
+ExtProjectGit("https://github.com/google/googletest.git" "master" ${DEPS_ROOT} CMAKE_ARGS "${_OPT_CMAKE_ARGS}")
 
 include_directories("${DEPS_ROOT}/include")
 link_directories("${DEPS_ROOT}/lib")
