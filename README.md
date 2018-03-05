@@ -1,8 +1,8 @@
-Here the short sample how-to use Google C++ Test Framework in cmakeable projects
+# Short sample how-to use Google C++ Test Framework in cmakeable projects
 
 1. Google test will be downloaded from GitHub and built with your project
 
-How to use:
+## How to use:
 
 1. git clone https://github.com/snikulov/google-test-examples.git
 2. cd google-test-examples
@@ -12,15 +12,13 @@ How to use:
 6. cmake --build .
 7. ctest -VV
 
-CI status:
+## CI status:
 
 [![Build Status](https://travis-ci.org/snikulov/google-test-examples.svg?branch=master)](https://travis-ci.org/snikulov/google-test-examples) | [![Build status](https://ci.appveyor.com/api/projects/status/t30uakdk0awxy88p/branch/master?svg=true)](https://ci.appveyor.com/project/snikulov/google-test-examples/branch/master)
 
-Known issues:
+## Known issues:
 
-- Google Test (master branch) was broken for MinGW (see https://github.com/google/googletest/issues/606)
-  As workaround we'll use -Dgtest_disable_pthreads=ON as suggested per https://github.com/google/shaderc/pull/174
-
+- TBD
 ---
 
 # How to use (alternativ with docker containers)
