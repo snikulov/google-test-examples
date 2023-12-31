@@ -2,6 +2,8 @@ cmake_minimum_required(VERSION 2.8.8)
 set(PROJECT_NAME_STR google-test-examples)
 project(${PROJECT_NAME_STR} C CXX)
 
+set(CMAKE_CXX_STANDARD 14)
+
 set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake ${CMAKE_MODULE_PATH})
 get_filename_component(DEPS_ROOT "${PROJECT_BINARY_DIR}/deps" ABSOLUTE)
 
@@ -27,7 +29,7 @@ endif()
 
 # Will download external CMakeable project from git repo, branch "master" and install it in $DEPS_ROOT
 # This also will create "googletest.git" target, which we'll use as dependency for our test project
-ExtProjectGit("https://github.com/google/googletest.git" "master" ${DEPS_ROOT} CMAKE_ARGS "${_OPT_CMAKE_ARGS}")
+ExtProjectGit("https://github.com/google/googletest.git" "main" ${DEPS_ROOT} CMAKE_ARGS "${_OPT_CMAKE_ARGS}")
 
 include_directories("${DEPS_ROOT}/include")
 link_directories("${DEPS_ROOT}/lib")
